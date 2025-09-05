@@ -211,4 +211,7 @@ __marimo__/
 
 # Prevent upload of database data files (if license does not allow redistribution of data)
 data/biocyc/*
+*.omex
 *.xml
+!data/template/*.omex
+!data/template/*.xml
