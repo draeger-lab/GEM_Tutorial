@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install DIAMOND
-RUN curl -L https://github.com/bbuchfink/diamond/releases/download/v3.3.1/diamond-linux64.tar.gz \
+RUN curl -L https://github.com/bbuchfink/diamond/releases/download/v2.1.13/diamond-linux64.tar.gz \
     -o /tmp/diamond.tar.gz && \
     tar -xzf /tmp/diamond.tar.gz -C /tmp && \
     mv /tmp/diamond /usr/local/bin/diamond && \
