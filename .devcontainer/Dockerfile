@@ -20,6 +20,9 @@ RUN curl -L https://github.com/bbuchfink/diamond/releases/download/v2.1.13/diamo
 # Install SPECIMEN from GitHub (installs also refineGEMs plus dependencies)
 RUN pip install "specimen@git+https://github.com/draeger-lab/SPECIMEN@dev"
 
+# Pin version of curies
+RUN pip install "curies==0.10.12"
+
 # Add Jupyter notebook support
 RUN pip install jupyter
 
