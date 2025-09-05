@@ -7,22 +7,40 @@ RUN apt-get update && apt-get install -y \
     curl \
     build-essential \
     unzip \
+    wget \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install DIAMOND
-RUN curl -L https://github.com/bbuchfink/diamond/releases/download/v3.3.1/diamond-linux64.tar.gz \
-    -o /tmp/diamond.tar.gz && \
-    tar -xzf /tmp/diamond.tar.gz -C /usr/local/bin --strip-components=1 diamond && \
-    rm /tmp/diamond.tar.gz && chmod +x /usr/local/bin/diamond
+# Install Miniconda
+ENV CONDA_DIR=/opt/conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh && \
+    bash /tmp/miniconda.sh -b -p $CONDA_DIR && \
+    rm /tmp/miniconda.sh
+ENV PATH="$CONDA_DIR/bin:$PATH"
 
-# Install SPECIMEN from GitHub (installs also refineGEMs plus dependencies)
+# Configure conda channels
+RUN conda config --add channels defaults && \
+    conda config --add channels conda-forge && \
+    conda config --add channels bioconda
+
+# Create conda environment with Python, Jupyter, refineGEMs, DIAMOND, and dependencies
+RUN conda create -y -n tutorial python=3.12 \
+    jupyter diamond && \
+    conda clean -a
+ENV CONDA_DEFAULT_ENV=tutorial
+ENV PATH="$CONDA_DIR/envs/tutorial/bin:$PATH"
+
+# Activate conda env for following commands
+SHELL ["conda", "run", "-n", "tutorial", "/bin/bash", "-c"]
+
+# Install SPECIMEN from GitHub
 RUN pip install "specimen@git+https://github.com/draeger-lab/SPECIMEN@dev"
 
-# Add Jupyter notebook support
-RUN pip install jupyter
+# Ensure Python kernel is available in Jupyter
+RUN python -m ipykernel install --user --name=tutorial --display-name "Python (tutorial)"
 
-# Add DIAMOND to PATH
-ENV PATH="/opt/diamond:$PATH"
-
-# Set default working dir
+# Set working directory
 WORKDIR /workspaces
+
+# Default command
+CMD ["bash"]
