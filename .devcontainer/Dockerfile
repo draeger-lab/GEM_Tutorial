@@ -18,8 +18,9 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     rm /tmp/miniconda.sh
 ENV PATH="$CONDA_DIR/bin:$PATH"
 
-# Configure conda channels
-RUN conda config --add channels defaults && \
+
+# Configure conda channels (avoid defaults to skip ToS issue)
+RUN conda config --remove-key channels || true && \
     conda config --add channels conda-forge && \
     conda config --add channels bioconda
 
