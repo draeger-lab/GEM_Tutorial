@@ -1,0 +1,46 @@
+{
+  "name": "SPECIMEN + refineGEMs Workshop",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/jupyter:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-toolsai.jupyter",             // Jupyter notebooks
+        "ms-python.python",               // Python language support
+        "ms-python.vscode-pylance",       // Python IntelliSense, linting, code navigation
+        "dotjoshjohnson.xml",             // XML support
+        "redhat.vscode-yaml",             // YAML support
+        "analytic-signal.preview-html"    // HTML preview and highlighting
+      ],
+      "settings": {
+        // Jupyter
+        "jupyter.askForKernelRestart": false,
+        "jupyter.notebookFileRoot": "${workspaceFolder}",
+
+        // Python
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.analysis.autoImportCompletions": true,
+        "editor.formatOnType": true,
+
+        // XML
+        "xml.format.enabled": true,
+
+        // YAML
+        "yaml.format.enable": true,
+        "yaml.validate": true,
+        "yaml.schemas": {
+          "https://json.schemastore.org/github-workflow.json": "/*.github/workflows/*"
+        },
+
+        // HTML
+        "html.format.enable": true,
+        "html.autoClosingTags": true
+      }
+    }
+  },
+  "postCreateCommand": "pip check || true"
+}
