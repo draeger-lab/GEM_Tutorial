@@ -208,3 +208,7 @@ __marimo__/
 
 # Mac-specific
 *.DS_Store
+
+# Prevent upload of database data files (if license does not allow redistribution of data)
+data/biocyc/*
+*.xml
