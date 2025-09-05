@@ -14,5 +14,8 @@ See the [`LICENSE`](https://github.com/draeger-lab/GEM_Tutorial/blob/main/LICENS
 - **Tutorial text, figures, slides, and other non‑code material** are released under 
 **Creative Commons Attribution 4.0 International (CC‑BY‑4.0)**. 
 See [`LICENSE-CC-BY.txt`](https://github.com/draeger-lab/GEM_Tutorial/blob/main/LICENSE-CC-BY.txt).
+- This tutorial uses data from UniProt (see folder `./data/Uniprot`) (The UniProt Consortium, licensed under CC-BY 4.0).
+- This tutorial also uses data from the National Center for Biotechnology Information (NCBI), which is in the public 
+domain (see folder `./data/` and `./data/template/`).
 
 Feel free to reuse, remix, and redistribute as long as you give appropriate credit.
