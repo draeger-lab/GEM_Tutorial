@@ -3,9 +3,6 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "features": {
-    "ghcr.io/devcontainers/features/jupyter:1": {}
-  },
   "customizations": {
     "vscode": {
       "extensions": [
